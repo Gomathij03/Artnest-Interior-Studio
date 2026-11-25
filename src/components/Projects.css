@@ -1,0 +1,253 @@
+
+/* PROJECTS SECTION */
+
+.projects-section {
+  width: 100%;
+  padding: 40px 8% 45px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.projects-container {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+/* HEADING */
+
+.projects-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.projects-label {
+  color: #70438a;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.projects-heading h2 {
+  font-family: "Times New Roman", serif;
+  color: #32105c;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.projects-heading h2 span {
+  color: #9b75b5;
+  font-style: italic;
+}
+
+.projects-heading > p {
+  max-width: 350px;
+  color: #766e7b;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* PROJECT GRID */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+/* PROJECT CARD */
+
+.project-card {
+  min-width: 0;
+  animation: projectCardIn 0.7s ease both;
+  animation-delay: calc(var(--card-index) * 0.08s);
+}
+
+.project-image-link {
+  display: block;
+  text-decoration: none;
+}
+
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  background: #eee8f2;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition:
+    transform 0.8s ease,
+    filter 0.5s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.07);
+  filter: brightness(0.78);
+}
+
+/* IMAGE HOVER */
+
+.project-image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(50, 16, 92, 0.2);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-image-overlay {
+  opacity: 1;
+}
+
+.project-image-overlay span {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: 1px solid #ffffff;
+  padding: 11px 16px;
+  transform: translateY(12px);
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image-overlay span {
+  transform: translateY(0);
+}
+
+/* PROJECT INFO */
+
+.project-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.project-category {
+  color: #8d6aa3;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.project-info h3 {
+  color: #32105c;
+  font-family: "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.project-info p {
+  color: #8b8490;
+  font-size: 11px;
+  margin: 0;
+}
+
+.project-arrow {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d9c9e3;
+  border-radius: 50%;
+  color: #70438a;
+  font-size: 17px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-arrow:hover {
+  color: #ffffff;
+  background: #70438a;
+  transform: rotate(45deg);
+}
+
+/* ANIMATION */
+
+@keyframes projectCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+  .projects-section {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-image-wrapper {
+    height: 240px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .projects-section {
+    padding: 35px 6%;
+  }
+
+  .projects-heading {
+    display: block;
+    margin-bottom: 22px;
+  }
+
+  .projects-heading > p {
+    margin-top: 12px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .project-image-wrapper {
+    height: 230px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    animation: none;
+  }
+
+  .project-image,
+  .project-image-overlay,
+  .project-arrow {
+    transition: none;
+  }
+}
