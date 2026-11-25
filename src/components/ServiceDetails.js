@@ -297,19 +297,35 @@ function ServiceDetails() {
     );
   };
 
-  useEffect(() => {
-    if (activeImage === null) return;
 
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") setActiveImage(null);
-      if (event.key === "ArrowLeft") showPrevious();
-      if (event.key === "ArrowRight") showNext();
-    };
+useEffect(() => {
+  if (activeImage === null || !service) return;
 
-    window.addEventListener("keydown", handleKeyDown);
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      setActiveImage(null);
+    }
 
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeImage]);
+    if (event.key === "ArrowLeft") {
+      setActiveImage((current) =>
+        current === 0 ? service.gallery.length - 1 : current - 1
+      );
+    }
+
+    if (event.key === "ArrowRight") {
+      setActiveImage((current) =>
+        current === service.gallery.length - 1 ? 0 : current + 1
+      );
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [activeImage, service]);
+
 
   if (!service) {
     return (
